@@ -1,0 +1,37 @@
+# Quick instructions and commands to create & push this repo to GitHub
+# ---------------------------------------------------------------
+# Replace placeholders (YOUR_TOKEN, REPO_NAME, USERNAME) before running.
+
+# Option A — Recommended: GitHub CLI (interactive, easiest)
+# Prereq: `gh` installed and authenticated (`gh auth login`).
+gh repo create bparvej/pacman-parvej --public --source . --push
+
+# Option B — Create repo via GitHub API (useful when you have a token)
+# NOTE: token must have `repo` (private) or `public_repo` (public) scope.
+curl -H "Authorization: token YOUR_TOKEN" \
+  -d '{"name":"pacman-parvej","private":false}' \
+  https://api.github.com/user/repos
+
+# After repo exists, standard local git flow (run in project root):
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+# replace USERNAME/REPO with your values
+git remote add origin https://github.com/bparvej/pacman-parvej.git
+git push -u origin main
+
+# Option C — Push using token in remote URL (less secure — avoid in shells/history)
+# git remote add origin https://YOUR_TOKEN@github.com/bparvej/pacman-parvej.git
+# git push -u origin main
+
+# Notes & safety
+# - Prefer `gh` (Option A). It handles auth and 2FA gracefully.
+# - If using a token, avoid embedding it in command history or shared screenshots.
+# - Token scopes: `repo` for private repos; `public_repo` suffices for public repos.
+# - .gitignore already added — verifies node_modules, dist, IDE files ignored.
+
+# If you'd like, you can either:
+#  1) Provide a temporary token here and I will create the repo and push for you,
+#     or
+#  2) Run Option A locally (one command) or follow the three-step sequence above.
